@@ -1,7 +1,9 @@
 <?php
 
+require "Config.php";
 require "Controller.php";
 require "Database.php";
+require "Model.php";
 // require "Database";
 class Boot
 {

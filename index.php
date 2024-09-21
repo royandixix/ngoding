@@ -1,5 +1,5 @@
-<?php 
+    <?php 
 
-require_once("apps/Boot.php"); 
-$apps = new Boot();
-?>
+    require_once("apps/Boot.php"); 
+    $apps = new Boot();
+    ?>

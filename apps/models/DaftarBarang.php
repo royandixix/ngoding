@@ -1,9 +1,9 @@
 <?php
 
-class DaftarBarang
+class DaftarBarang extends Model
 {
     private $daftar = [];
-    private $db = null;
+
 
     public function __construct()
     {
@@ -26,20 +26,27 @@ class DaftarBarang
         // ];
         $this->db = new DB();
         $this->db->connect('mysql', 'localhost', 'root', '', 'semuabisangoding');
-
-
-
     }
 
     public function getDataAll()
     {
         // return $this->daftar;
+        $data = [];
         $stmt = "SELECT * FROM  daftarbarang";
         $query = $this->db->query($stmt);
-        $data = [];
         while ($result = $this->db->fetch_array($query)) {
-            $data [] = $result;
+            $data[] = $result;
         }
-        return $data; 
+        return $data;
+    }
+
+    public function getDataById($id)
+    {   
+        $data = [];
+        $stmt = "SELECT * FROM daftarbarang WHERE id = $id";
+        $query = $this->db->query($stmt);
+        $data = $this->db->fetch_array($query);
+
+        return $data; // Kembalikan data
     }
 }

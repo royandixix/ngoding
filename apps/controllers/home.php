@@ -20,14 +20,15 @@ class home extends controller
         echo "Anda memanggil action home dengan data 1 = $data1 dan data 2 = $data2 \n";
     }
 
-    public function lihatdata()
+    public function lihatdata($id)
     {
-        $data = $this->dt->getDataOne();
-        $this->loadview('template/header', ['title' => 'Detail Barang']);
-        $this->loadview('template/detailbarang', $data);
-        $this->loadview('template/footer');
+        $data = $this->df->getDataById($id); // Tambahkan ini untuk memeriksa data
+        $this->loadview('templates/header', ['title' => 'Detail Barang']);
+        $this->loadview('home/detailbarang', $data);
+        $this->loadview('templates/footer');
     }
-
+    
+ 
 
     public function listbarang()
     {
@@ -41,4 +42,5 @@ class home extends controller
         //     echo "<br/>";
         // }
     }
+    
 }
