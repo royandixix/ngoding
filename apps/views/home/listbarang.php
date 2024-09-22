@@ -1,7 +1,9 @@
-<div class="container mt-5">
-    <h2 class="mb-4">Daftar Barang</h2>
-    <table class="table table-hover table-striped">
-        <thead class="table-light">
+<div class="container">
+    <a href="<?php echo BASE_URL . 'index.php?r=home/insertbarang' ?>" class="btn btn-primary mt-4">Tambah Barang</a>
+
+
+    <table class="table table-bordered table-hover mt-3">
+        <thead class="table-dark">
             <tr>
                 <th>ID</th>
                 <th>Nama Barang</th>
@@ -9,24 +11,18 @@
             </tr>
         </thead>
         <tbody>
-            <?php if (!empty($data)) : ?>
-                <?php foreach ($data as $item) : ?>
-                    <tr>
-                        <td><?php echo $item['id']; ?></td>
-                        <td><?php echo $item['nama']; ?></td>
-                        <td><?php echo $item['qty']; ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php else : ?>
+            <?php foreach ($data as $item) : ?>
                 <tr>
-                    <td colspan="3" class="text-center">Tidak ada data yang ditemukan</td>
+                    <td><?php echo $item['id']; ?></td>
+                    <td><?php echo $item['nama']; ?></td>
+                    <td>
+                        <span class="badge text-bg-<?php echo $item['qty'] > 50 ? 'success' : 'danger'; ?>">
+                            <?php echo $item['qty'] > 50 ? 'Stok Aman' : 'Stok Rendah'; ?>
+                            (<?php echo $item['qty']; ?>)
+                        </span>
+                    </td>
                 </tr>
-            <?php endif; ?>
+            <?php endforeach; ?>
         </tbody>
     </table>
-
-    <div class="d-flex justify-content-between mt-4">
-        <button class="btn btn-primary" onclick="window.location.href='tambah_barang.php'">Tambah Barang</button>
-        <button class="btn btn-success">Cetak Daftar</button>
-    </div>
 </div>

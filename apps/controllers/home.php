@@ -27,8 +27,8 @@ class home extends controller
         $this->loadview('home/detailbarang', $data);
         $this->loadview('templates/footer');
     }
-    
- 
+
+
 
     public function listbarang()
     {
@@ -42,5 +42,20 @@ class home extends controller
         //     echo "<br/>";
         // }
     }
-    
+
+    public function insertbarang()
+    {
+        // Cek jika form disubmit
+        if (!empty($_POST)) {
+            if ($this->df->tambahBarang($_POST)) {
+                header('location: ' . BASE_URL . 'index.php?r=home/listbarang');
+                exit;
+            }
+        }
+
+        // Muat tampilan form
+        $this->loadview('templates/header', ['title' => 'Insert Barang']);
+        $this->loadview('home/form');
+        $this->loadview('templates/footer');
+    }
 }

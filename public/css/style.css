@@ -1,0 +1,68 @@
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+/* Navbar dengan warna putih dan shadow */
+.navbar {
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px 0;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Sticky navbar saat di-scroll */
+.navbar.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
+/* Ubah warna tombol search agar sesuai dengan tema putih */
+.btn-outline-primary {
+  color: #000;
+  border-color: #000;
+}
+
+.btn-outline-primary:hover {
+  background-color: #000;
+  color: white;
+}
+
+/* Tambahan styling untuk navbar */
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #000;
+}
+
+.navbar-nav .nav-link {
+  color: #000;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #007bff;
+}
+
+/* list barang */
+.container {
+  margin-top: 20px;
+}
+
+.table {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.table th {
+  background-color: #343a40; /* Warna gelap untuk header */
+  color: white; /* Teks putih untuk header */
+}
+
+.table td {
+  vertical-align: middle; /* Vertikal rata tengah */
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f2f2f2; /* Warna latar belakang saat hover */
+}

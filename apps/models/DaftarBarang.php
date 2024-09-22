@@ -41,12 +41,23 @@ class DaftarBarang extends Model
     }
 
     public function getDataById($id)
-    {   
+    {
         $data = [];
         $stmt = "SELECT * FROM daftarbarang WHERE id = $id";
         $query = $this->db->query($stmt);
         $data = $this->db->fetch_array($query);
 
         return $data; // Kembalikan data
+    }
+
+    public function tambahBarang($param)
+    {
+        $stmt = "INSERT INTO daftarbarang (nama, qty) VALUES (:nama, :qty)";
+        $query = $this->db->query($stmt, $param);
+        if ($this->db->last_id() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
