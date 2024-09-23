@@ -60,4 +60,28 @@ class DaftarBarang extends Model
             return false;
         }
     }
+    public function updateBarang($param)
+    {
+        $stmt = "UPDATE daftarbarang SET nama = :nama, qty = :qty WHERE id = :id";
+        $query = $this->db->query($stmt,$param);
+        if ($query->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function hapusBarang($id)
+    {
+        $stmt = "DELETE FROM daftarbarang WHERE id = $id  ";
+        $query = $this->db->query($stmt);
+        if ($query->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+  
+    
 }

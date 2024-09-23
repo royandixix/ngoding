@@ -6,7 +6,7 @@ class home extends controller
 
     public function __construct()
     {
-        $this->dt = $this->loadmodel("barang"); // Objet
+        $this->dt = $this->loadmodel("barang");
         $this->df = $this->loadmodel("daftarBarang");
     }
 
@@ -22,25 +22,18 @@ class home extends controller
 
     public function lihatdata($id)
     {
-        $data = $this->df->getDataById($id); // Tambahkan ini untuk memeriksa data
+        $data = $this->df->getDataById($id);
         $this->loadview('templates/header', ['title' => 'Detail Barang']);
         $this->loadview('home/detailbarang', $data);
         $this->loadview('templates/footer');
     }
 
-
-
     public function listbarang()
     {
         $data = $this->df->getDataAll();
-        $this->loadview('templates/header', ['title' => 'list Barang']);
+        $this->loadview('templates/header', ['title' => 'List Barang']);
         $this->loadview('home/listbarang', $data);
         $this->loadview('templates/footer');
-
-        // foreach ($this->df->getDataAll() as $item) {
-        //     echo $item['id'] . " " . $item['nama'] . " " . $item['qty'];
-        //     echo "<br/>";
-        // }
     }
 
     public function insertbarang()
@@ -48,14 +41,41 @@ class home extends controller
         // Cek jika form disubmit
         if (!empty($_POST)) {
             if ($this->df->tambahBarang($_POST)) {
-                header('location: ' . BASE_URL . 'index.php?r=home/listbarang');
+                header('Location: ' . BASE_URL . 'index.php?r=home/listbarang');
                 exit;
             }
         }
 
         // Muat tampilan form
         $this->loadview('templates/header', ['title' => 'Insert Barang']);
-        $this->loadview('home/form');
+        $this->loadview('home/insert');
         $this->loadview('templates/footer');
+    }
+
+    public function updatebarang($id)
+    {
+        $data = $this->df->getDataById($id);
+        if (!empty($_POST)) {
+            $_POST['id'] = $id;
+            if ($this->df->updateBarang($_POST)) {
+                header('Location: ' . BASE_URL . 'index.php?r=home/listbarang');
+                exit;
+            }
+        }
+
+        $this->loadview('templates/header', ['title' => 'Update Barang']);
+        $this->loadview('home/update', $data);
+        $this->loadview('templates/footer');
+    }
+
+    public function deletebarang($id)
+    {
+
+
+        $data = $this->df->getDataById($id);
+        if ($this->df->hapusBarang($id)) {
+            header('Location: ' . BASE_URL . 'index.php?r=home/listbarang');
+            exit;
+        }
     }
 }
